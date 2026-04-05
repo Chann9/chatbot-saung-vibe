@@ -16,7 +16,7 @@ model User {
   email String  @unique
   password  String
   role  Role    @default(USER)
-  settings  UserSettings?
+  settings  UserSettings? @relation("UserSettings")
   chatConversations ChatConversation[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -35,7 +35,7 @@ model UserSettings {
   userId Int @unique
   chatLimit Int @default(10)
   currentChatCount Int @default(0)
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation("UserSettings", fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

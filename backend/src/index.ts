@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
+import authRoutes from './routes/auth.js';
 
 dotenv.config();
 
@@ -22,8 +23,8 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'Server is running' });
 });
 
-// Routes (akan ditambahkan nanti)
-// app.use('/api/auth', authRoutes);
+// Routes
+app.use('/api/auth', authRoutes);
 // app.use('/api/chat', chatRoutes);
 // app.use('/api/admin', adminRoutes);
 
@@ -44,6 +45,7 @@ const startServer = async () => {
 
     app.listen(PORT, () => {
       console.log(`✓ Server running on http://localhost:${PORT}`);
+      console.log(`✓ API Documentation available at http://localhost:${PORT}/api/health`);
     });
   } catch (error) {
     console.error('✗ Failed to start server:', error);
