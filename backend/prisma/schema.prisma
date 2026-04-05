@@ -1,0 +1,75 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  username  String  @unique
+  email String  @unique
+  password  String
+  role  Role    @default(USER)
+  settings  UserSettings?
+  chatConversations ChatConversation[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([username])
+  @@index([role])
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+model UserSettings {
+  id    Int     @id @default(autoincrement())
+  userId Int @unique
+  chatLimit Int @default(10)
+  currentChatCount Int @default(0)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model ChatConversation {
+  id    Int     @id @default(autoincrement())
+  userId Int
+  title String  @default("New Chat")
+  messages ChatMessage[]
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model ChatMessage {
+  id    Int     @id @default(autoincrement())
+  conversationId Int
+  sender MessageSender
+  message String @db.LongText
+  conversation ChatConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([conversationId])
+  @@index([sender])
+  @@index([createdAt])
+}
+
+enum MessageSender {
+  USER
+  AI
+}
