@@ -1,4 +1,10 @@
-### Register User - MAIN TEST
+### ===========================================
+### CHATBOT API - Example Calling
+### ===========================================
+
+### ========== AUTHENTICATION ENDPOINTS ==========
+
+### 1. Register User
 POST http://localhost:5000/api/auth/register
 Content-Type: application/json
 
@@ -11,7 +17,7 @@ Content-Type: application/json
 
 ###
 
-### Login Admin
+### 2. Login Admin
 POST http://localhost:5000/api/auth/login
 Content-Type: application/json
 
@@ -22,11 +28,134 @@ Content-Type: application/json
 
 ###
 
-### Get Profile
-GET http://localhost:5000/api/auth/profile
-Authorization: Bearer TOKEN_HERE
+### 3. Login Regular User
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "password123"
+}
 
 ###
 
-### Health Check
+### 4. Get Profile (Replace TOKEN with actual token)
+GET http://localhost:5000/api/auth/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoidGVzdHVzZXIiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc3NzE3NzM3NiwiZXhwIjoxNzc3MjYzNzc2fQ.lyhYbd_8RWuUmXG7rQWLx4uKx6QFLGCLSZwb8eIPjJU
+
+###
+
+### 5. Refresh Token
+POST http://localhost:5000/api/auth/refresh-token
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoidGVzdHVzZXIiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTc3NzE3NzM3NiwiZXhwIjoxNzc3MjYzNzc2fQ.lyhYbd_8RWuUmXG7rQWLx4uKx6QFLGCLSZwb8eIPjJU
+
+###
+
+### ===========================================
+### CHAT ENDPOINTS
+### ===========================================
+
+### 6. Create New Conversation
+POST http://localhost:5000/api/chat
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTcwODMyMjAsImV4cCI6MTcxNzE2OTYyMH0.example
+Content-Type: application/json
+
+{
+  "title": "Programming Discussion"
+}
+
+###
+
+### 7. Get All Conversations
+GET http://localhost:5000/api/chat
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTcwODMyMjAsImV4cCI6MTcxNzE2OTYyMH0.example
+
+###
+
+### 8. Get Single Conversation (Replace 1 with conversation ID)
+GET http://localhost:5000/api/chat/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTcwODMyMjAsImV4cCI6MTcxNzE2OTYyMH0.example
+
+###
+
+### 9. Rename Conversation (Replace 1 with conversation ID)
+PUT http://localhost:5000/api/chat/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTcwODMyMjAsImV4cCI6MTcxNzE2OTYyMH0.example
+Content-Type: application/json
+
+{
+  "title": "New Chat Title"
+}
+
+###
+
+### 10. Send Message & Get AI Response (Replace 1 with conversation ID)
+POST http://localhost:5000/api/chat/1/message
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTcwODMyMjAsImV4cCI6MTcxNzE2OTYyMH0.example
+Content-Type: application/json
+
+{
+  "message": "Apa itu REST API?"
+}
+
+###
+
+### 11. Get All Messages (Replace 1 with conversation ID)
+GET http://localhost:5000/api/chat/1/messages
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTcwODMyMjAsImV4cCI6MTcxNzE2OTYyMH0.example
+
+###
+
+### 12. Delete Conversation (Replace 1 with conversation ID)
+DELETE http://localhost:5000/api/chat/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTcwODMyMjAsImV4cCI6MTcxNzE2OTYyMH0.example
+
+###
+
+### ===========================================
+### ADMIN ENDPOINTS
+### ===========================================
+
+### 13. Get All Users (Admin only)
+GET http://localhost:5000/api/admin/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTcwODMyMjAsImV4cCI6MTcxNzE2OTYyMH0.example
+
+###
+
+### 14. Get Single User (Replace 2 with user ID)
+GET http://localhost:5000/api/admin/users/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTcwODMyMjAsImV4cCI6MTcxNzE2OTYyMH0.example
+
+###
+
+### 15. Update User Chat Limit (Replace 2 with user ID)
+PUT http://localhost:5000/api/admin/users/2/settings
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTcwODMyMjAsImV4cCI6MTcxNzE2OTYyMH0.example
+Content-Type: application/json
+
+{
+  "chatLimit": 20
+}
+
+###
+
+### 16. Get System Statistics
+GET http://localhost:5000/api/admin/statistics
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTcwODMyMjAsImV4cCI6MTcxNzE2OTYyMH0.example
+
+###
+
+### 17. Delete User (Replace 2 with user ID)
+DELETE http://localhost:5000/api/admin/users/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTcwODMyMjAsImV4cCI6MTcxNzE2OTYyMH0.example
+
+###
+
+### ===========================================
+### HEALTH CHECK
+### ===========================================
+
+### 18. Health Check
 GET http://localhost:5000/api/health
+
+###
