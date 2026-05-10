@@ -1,0 +1,24 @@
+{
+  "name": "chatbot-saung-vibe",
+  "version": "1.0.0",
+  "description": "Chatbot Project with Express, Prisma, and Gemini AI",
+  "main": "backend/src/index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "cd backend && npm run dev",
+    "build": "cd backend && npm run build",
+    "start": "cd backend && npm run start",
+    "db:push": "cd backend && npx prisma db push",
+    "db:seed": "cd backend && npx prisma db seed",
+    "db:reset": "cd backend && npx prisma migrate reset",
+    "db:studio": "cd backend && npx prisma studio",
+    "lint": "cd backend && npm run lint",
+    "format": "cd backend && npm run format"
+  },
+  "keywords": ["chatbot", "express", "prisma", "gemini", "typescript"],
+  "author": "Cantika",
+  "license": "MIT",
+  "workspaces": [
+    "backend"
+  ]
+}
