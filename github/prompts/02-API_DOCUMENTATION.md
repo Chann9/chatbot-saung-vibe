@@ -97,7 +97,6 @@ Buatkan dokumentasi lengkap untuk API Chat Features:
 ```
 
 ---
-
 ## Struktur Dokumentasi Output
 
 ```markdown
@@ -233,7 +232,6 @@ const data = await response.json();
 ```
 
 ---
-
 ## Best Practices
 
 1. **Include Code Examples**
@@ -260,11 +258,9 @@ const data = await response.json();
    - Dokumentasikan yang bisa diakses public vs private
 
 ---
-
 ## Tools untuk Generate Dokumentasi
 
 - **Swagger/OpenAPI**: Generate interactive documentation
 - **Postman**: Export collection sebagai dokumentasi
 - **.http files**: VS Code REST Client untuk quick reference
 - **Markdown**: Untuk dokumentasi umum dan GitHub
-

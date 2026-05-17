@@ -149,12 +149,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZ
 DELETE http://localhost:5000/api/admin/users/2
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3MTcwODMyMjAsImV4cCI6MTcxNzE2OTYyMH0.example
 
-###
-
-### ===========================================
-### HEALTH CHECK
-### ===========================================
-
 ### 18. Health Check
 GET http://localhost:5000/api/health
 
